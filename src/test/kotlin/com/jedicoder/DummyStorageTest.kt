@@ -21,12 +21,12 @@ class DummyStorageTest {
 
     @Test
     fun `when an entry was not updated then return false`() {
-        assertThat(storage.update(storageName, entry)).isFalse()
+        assertThat(storage.update(storageName, entry, "new")).isFalse()
     }
 
     @Test
     fun `when an entry was successfully updated in the file then return true`() {
-        assertThat(storage.update(storageName, entry)).isTrue()
+        assertThat(storage.update(storageName, entry, "new")).isTrue()
     }
 
     @Test

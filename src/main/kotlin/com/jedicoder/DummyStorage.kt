@@ -11,8 +11,8 @@ class DummyStorage : Storage {
         return true
     }
 
-    override fun update(storeName: String, entry: String): Boolean {
-        logger.info("Entry $entry was successfully updated in the storage $storeName")
+    override fun update(storeName: String, oldEntry: String, newEntry: String): Boolean {
+        logger.info("Entry $oldEntry was successfully updated in the storage $storeName")
 
         return true
     }

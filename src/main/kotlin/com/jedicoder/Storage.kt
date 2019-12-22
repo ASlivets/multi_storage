@@ -11,20 +11,25 @@ interface Storage {
      *
      * @return `true` in case of success or `false` otherwise
      */
-    fun create(storeName: String,
-               entry: String): Boolean
+    fun create(
+        storeName: String,
+        entry: String
+    ): Boolean
 
     /**
      * Update an entry in the storage
      * If storage doesn't exist it will be created
      *
      * @param storeName the name of the storage,
-     * @param entry the entry to be created
+     * @param oldEntry the entry to be created
      *
      * @return `true` in case of success or `false` otherwise
      */
-    fun update(storeName: String,
-               entry: String) : Boolean
+    fun update(
+        storeName: String,
+        oldEntry: String,
+        newEntry: String
+    ): Boolean
 
     /**
      * Read the storage
@@ -33,7 +38,7 @@ interface Storage {
      *
      * @return list of entries from the storage
      */
-    fun read(storeName: String) : List<String>
+    fun read(storeName: String): List<String>
 
     /**
      * Delete an entry from the storage
@@ -43,6 +48,8 @@ interface Storage {
      *
      * @return `true` in case of success or `false` otherwise
      */
-    fun delete(storeName: String,
-               entry: String) : Boolean
+    fun delete(
+        storeName: String,
+        entry: String
+    ): Boolean
 }
