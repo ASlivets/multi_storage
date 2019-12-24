@@ -1,8 +1,10 @@
-package com.jedicoder
+package com.jedicoder.storage
 
 import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Repository
 import java.io.File
 
+@Repository
 class FileStorage : Storage {
     private val logger = LoggerFactory.getLogger(javaClass)
 
@@ -10,7 +12,7 @@ class FileStorage : Storage {
         val file = File(storeName)
         val entries = readEntries(file)
         return if (entries.contains(entry)) {
-            logger.warn("Can create an entry $entry in the file $storeName because it is already present")
+            logger.warn("Can't create an entry $entry in the file $storeName because it is already present")
             false
         } else {
             val appendedList = entries.joinToString("\n")
@@ -53,19 +55,19 @@ class FileStorage : Storage {
         }
     }
 
-    private fun readEntries(file: File): List<String> {
-        return try {
-            file.readLines()
-        } catch (e: Exception) {
-            emptyList()
-        }
-    }
-
     override fun read(storeName: String): List<String> {
         val file = File(storeName)
         val emptyList = readEntries(file)
         logger.info("Successfully read ${emptyList.size} entries from the storage $storeName")
 
         return emptyList
+    }
+
+    private fun readEntries(file: File): List<String> {
+        return try {
+            file.readLines()
+        } catch (e: Exception) {
+            emptyList()
+        }
     }
 }

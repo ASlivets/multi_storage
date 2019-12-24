@@ -1,5 +1,7 @@
 package com.jedicoder
 
+import com.jedicoder.storage.FileStorage
+import com.jedicoder.storage.Storage
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Test
