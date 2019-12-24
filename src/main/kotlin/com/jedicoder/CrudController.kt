@@ -1,5 +1,6 @@
 package com.jedicoder
 
+import com.jedicoder.model.Result
 import com.jedicoder.storage.Storage
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestMapping
@@ -24,6 +25,4 @@ class CrudController(private val storage: Storage) {
         return ResponseEntity.ok()
             .body(Result(isCreated))
     }
-
-    data class Result(val result: Boolean)
 }
