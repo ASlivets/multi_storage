@@ -1,7 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-
-
 plugins {
     id("org.springframework.boot") version "2.1.6.RELEASE"
     id("io.spring.dependency-management") version "1.0.7.RELEASE"
@@ -20,9 +18,11 @@ repositories {
 
 dependencies {
     implementation(group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8")
+    implementation(group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin")
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-web")
-    implementation(group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8")
-    implementation(group  = "com.fasterxml.jackson.module", name = "jackson-module-kotlin")
+    implementation(group = "org.springframework.boot", name = "spring-boot-starter-mustache")
+
+    runtimeOnly(group = "org.springframework.boot", name = "spring-boot-devtools")
 
     compile(group = "org.slf4j", name = "slf4j-api", version = "1.7.29")
 

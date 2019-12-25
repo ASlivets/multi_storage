@@ -1,7 +1,9 @@
 package com.jedicoder.storage
 
 import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Repository
 
+@Repository
 class DummyStorage : Storage {
     private val logger =  LoggerFactory.getLogger(javaClass)
 
