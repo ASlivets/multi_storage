@@ -30,7 +30,7 @@ class CrudControllerTest(@LocalServerPort val port: Int) {
             .queryParam("entry", "33")
             .request(Method.POST, "/v1/create")
             .then()
-            .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+            .contentType(MediaType.TEXT_HTML.type)
     }
 
     @Test

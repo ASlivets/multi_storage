@@ -1,11 +1,10 @@
 package com.jedicoder
 
-import com.jedicoder.model.Result
 import com.jedicoder.storage.Storage
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.servlet.ModelAndView
 
 @RestController
 class CrudController(private val storage: Storage) {
@@ -20,9 +19,9 @@ class CrudController(private val storage: Storage) {
             "entry",
             required = true
         ) entry: String
-    ): ResponseEntity<Result> {
+    ): ModelAndView {
         val isCreated = storage.create(storeName, entry)
-        return ResponseEntity.ok()
-            .body(Result(isCreated))
+
+        return ModelAndView("result", mapOf("status" to isCreated))
     }
 }
