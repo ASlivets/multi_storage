@@ -1,5 +1,15 @@
 {{> header}}
 
-<p>Create
+<form action="/v1/create" class="center">
+    <label for="storeName">
+        Store name:<input type="text" name="storeName" id="storeName"><br>
+    </label>
+    <label for="entry">
+        Entry:<input type="text" name="entry" id="entry"><br>
+    </label>
+    <label for="submit">
+        <input type="submit" name="submit" value="Add entry" id="submit"><br>
+    </label>
+</form>
 
 {{> footer}}
