@@ -1,7 +1,9 @@
 package com.jedicoder
 
+import com.jedicoder.storage.DummyStorage
+import com.jedicoder.storage.Storage
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class DummyStorageTest {
     private  val entry = "dummyEntry"

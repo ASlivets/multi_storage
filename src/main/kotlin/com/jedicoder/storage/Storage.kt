@@ -1,4 +1,4 @@
-package com.jedicoder
+package com.jedicoder.storage
 
 interface Storage {
 
