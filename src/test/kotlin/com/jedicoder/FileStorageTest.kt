@@ -3,8 +3,8 @@ package com.jedicoder
 import com.jedicoder.storage.FileStorage
 import com.jedicoder.storage.Storage
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.After
-import org.junit.Test
 import java.io.File
 
 class FileStorageTest {
