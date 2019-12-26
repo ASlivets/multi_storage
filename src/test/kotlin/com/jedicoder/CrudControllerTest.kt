@@ -10,37 +10,57 @@ import org.springframework.http.MediaType
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CrudControllerTest(@LocalServerPort val port: Int) {
+    private val storageName = "filename42"
 
     @Test
-    fun `when get resources then status code is 200`() {
+    fun `when request 'create' with params then create an entry`() {
         RestAssured.given().port(port)
             .log().all()
-            .queryParam("storeName", "filename42")
+            .queryParam("storageName", storageName)
             .queryParam("entry", "33")
             .request(Method.POST, "/v1/create")
             .then()
             .statusCode(200)
-    }
-
-    @Test
-    fun `when requests resources then set content type AppJson`() {
-        RestAssured.given().port(port)
-            .log().all()
-            .queryParam("storeName", "filename42")
-            .queryParam("entry", "33")
-            .request(Method.POST, "/v1/create")
-            .then()
             .contentType(MediaType.TEXT_HTML.type)
+            .body("", CoreMatchers.notNullValue())
     }
 
     @Test
-    fun `when requests resources then body is not empty`() {
+    fun `when request 'read' with params then read entries from the storage`() {
         RestAssured.given().port(port)
             .log().all()
-            .queryParam("storeName", "filename42")
-            .queryParam("entry", "33")
-            .request(Method.POST, "/v1/create")
+            .queryParam("storageName", storageName)
+            .request(Method.POST, "/v1/read")
             .then()
+            .statusCode(200)
+            .contentType(MediaType.TEXT_HTML.type)
+            .body("", CoreMatchers.notNullValue())
+    }
+
+    @Test
+    fun `when request 'update' with params then update an entry`() {
+        RestAssured.given().port(port)
+            .log().all()
+            .queryParam("storageName", storageName)
+            .queryParam("oldValue", "33")
+            .queryParam("newValue", "42")
+            .request(Method.POST, "/v1/update")
+            .then()
+            .statusCode(200)
+            .contentType(MediaType.TEXT_HTML.type)
+            .body("", CoreMatchers.notNullValue())
+    }
+
+    @Test
+    fun `when request 'delete' with params then delete an entry`() {
+        RestAssured.given().port(port)
+            .log().all()
+            .queryParam("storageName", storageName)
+            .queryParam("entry", "33")
+            .request(Method.POST, "/v1/delete")
+            .then()
+            .statusCode(200)
+            .contentType(MediaType.TEXT_HTML.type)
             .body("", CoreMatchers.notNullValue())
     }
 }

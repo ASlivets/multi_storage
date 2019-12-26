@@ -10,18 +10,66 @@ import org.springframework.web.servlet.ModelAndView
 class CrudController(private val storage: Storage) {
 
     @RequestMapping("/v1/create")
-    fun resources(
+    fun create(
         @RequestParam(
-            "storeName",
+            "storageName",
             required = true
-        ) storeName: String,
+        ) storageName: String,
         @RequestParam(
             "entry",
             required = true
         ) entry: String
     ): ModelAndView {
-        val isCreated = storage.create(storeName, entry)
+        val isCreated = storage.create(storageName, entry)
 
         return ModelAndView("result", mapOf("status" to isCreated))
+    }
+
+    @RequestMapping("/v1/update")
+    fun resources(
+        @RequestParam(
+            "storageName",
+            required = true
+        ) storageName: String,
+        @RequestParam(
+            "oldValue",
+            required = true
+        ) oldValue: String,
+        @RequestParam(
+            "newValue",
+            required = true
+        ) newValue: String
+    ): ModelAndView {
+        val isUpdated = storage.update(storageName, oldValue, newValue)
+
+        return ModelAndView("result", mapOf("status" to isUpdated))
+    }
+
+    @RequestMapping("/v1/read")
+    fun read(
+        @RequestParam(
+            "storageName",
+            required = true
+        ) storageName: String
+    ): ModelAndView {
+        val entries = storage.read(storageName)
+
+        return ModelAndView("read", mapOf("entries" to entries))
+    }
+
+    @RequestMapping("/v1/delete")
+    fun delete(
+        @RequestParam(
+            "storageName",
+            required = true
+        ) storageName: String,
+        @RequestParam(
+            "entry",
+            required = true
+        ) entry: String
+    ): ModelAndView {
+        val isDeleted = storage.delete(storageName, entry)
+
+        return ModelAndView("result", mapOf("status" to isDeleted))
     }
 }

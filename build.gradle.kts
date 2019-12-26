@@ -31,6 +31,7 @@ dependencies {
     testImplementation(group = "io.rest-assured", name = "rest-assured")
     testImplementation(group = "org.junit.jupiter", name = "junit-jupiter-api")
     testRuntime(group = "org.junit.jupiter", name = "junit-jupiter-engine")
+    testCompile(group = "org.junit.jupiter", name = "junit-jupiter-params")
 }
 
 tasks.test {
