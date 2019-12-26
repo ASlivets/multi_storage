@@ -1,5 +1,12 @@
 {{> header}}
 
-<p> Was operation successful? - {{entries}}
+<form action="/v1/read" class="center">
+    <label for="storageName">
+        Store name:<input type="text" name="storageName" id="storageName"><br>
+    </label>
+    <label for="submit">
+        <input type="submit" name="submit" value="Read storage" id="submit"><br>
+    </label>
+</form>
 
 {{> footer}}

@@ -54,8 +54,11 @@ class CrudController(private val storage: Storage) {
     ): ModelAndView {
         val entries = storage.read(storageName)
 
-        return ModelAndView("read", mapOf("entries" to entries))
+        val wrappedEntries = entries.map { Entry(it) }
+        return ModelAndView("listView", mapOf("entries" to wrappedEntries))
     }
+
+    private data class Entry(val entry: String)
 
     @RequestMapping("/v1/delete")
     fun delete(
