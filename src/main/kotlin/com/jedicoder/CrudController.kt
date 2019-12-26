@@ -12,15 +12,15 @@ class CrudController(private val storage: Storage) {
     @RequestMapping("/v1/create")
     fun create(
         @RequestParam(
-            "storeName",
+            "storageName",
             required = true
-        ) storeName: String,
+        ) storageName: String,
         @RequestParam(
             "entry",
             required = true
         ) entry: String
     ): ModelAndView {
-        val isCreated = storage.create(storeName, entry)
+        val isCreated = storage.create(storageName, entry)
 
         return ModelAndView("result", mapOf("status" to isCreated))
     }
@@ -28,9 +28,9 @@ class CrudController(private val storage: Storage) {
     @RequestMapping("/v1/update")
     fun resources(
         @RequestParam(
-            "storeName",
+            "storageName",
             required = true
-        ) storeName: String,
+        ) storageName: String,
         @RequestParam(
             "oldValue",
             required = true
@@ -40,7 +40,7 @@ class CrudController(private val storage: Storage) {
             required = true
         ) newValue: String
     ): ModelAndView {
-        val isUpdated = storage.update(storeName, oldValue, newValue)
+        val isUpdated = storage.update(storageName, oldValue, newValue)
 
         return ModelAndView("result", mapOf("status" to isUpdated))
     }
@@ -48,27 +48,27 @@ class CrudController(private val storage: Storage) {
     @RequestMapping("/v1/read")
     fun read(
         @RequestParam(
-            "storeName",
+            "storageName",
             required = true
-        ) storeName: String
+        ) storageName: String
     ): ModelAndView {
-        val entries = storage.read(storeName)
+        val entries = storage.read(storageName)
 
-        return ModelAndView("result", mapOf("entries" to entries))
+        return ModelAndView("read", mapOf("entries" to entries))
     }
 
     @RequestMapping("/v1/delete")
     fun delete(
         @RequestParam(
-            "storeName",
+            "storageName",
             required = true
-        ) storeName: String,
+        ) storageName: String,
         @RequestParam(
             "entry",
             required = true
         ) entry: String
     ): ModelAndView {
-        val isDeleted = storage.delete(storeName, entry)
+        val isDeleted = storage.delete(storageName, entry)
 
         return ModelAndView("result", mapOf("status" to isDeleted))
     }
