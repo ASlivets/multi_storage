@@ -55,7 +55,7 @@ class CrudController(private val storage: Storage) {
         val entries = storage.read(storageName)
 
         val wrappedEntries = entries.map { Entry(it) }
-        return ModelAndView("listView", mapOf("entries" to wrappedEntries))
+        return ModelAndView("listView", mapOf("entries" to wrappedEntries, "storageName" to storageName))
     }
 
     private data class Entry(val entry: String)

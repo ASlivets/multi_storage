@@ -23,6 +23,10 @@ span {
     color: darkred;
 }
 
+.list{
+    font-size: 20px;
+}
+
 a {
     font-size: 20px;
     border-top: 0;
