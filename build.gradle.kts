@@ -21,7 +21,6 @@ dependencies {
     implementation(group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin")
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-web")
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-mustache")
-
     runtimeOnly(group = "org.springframework.boot", name = "spring-boot-devtools")
 
     compile(group = "org.slf4j", name = "slf4j-api", version = "1.7.29")

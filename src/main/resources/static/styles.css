@@ -1,12 +1,16 @@
-table.menu {
+.center{
     justify-content: center;
-    display: flex;
+    display: grid;
     padding-top: 5em;
 }
 
-.menu input {
+form{
+    text-align: right;
+}
+
+input {
     height: 40px;
-    width: 85px;
+    width: 150px;
     font-size: 20px;
     border-top: 0;
     border-left: 0;
@@ -15,11 +19,15 @@ table.menu {
     text-align: inherit;
 }
 
-.menu span {
+span {
     color: darkred;
 }
 
-.menu a {
+.list{
+    font-size: 20px;
+}
+
+a {
     font-size: 20px;
     border-top: 0;
     border-left: 0;

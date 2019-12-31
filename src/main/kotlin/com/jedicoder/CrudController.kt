@@ -1,6 +1,7 @@
 package com.jedicoder
 
 import com.jedicoder.storage.Storage
+import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -8,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView
 
 @RestController
 class CrudController(private val storage: Storage) {
+    private val logger = LoggerFactory.getLogger(javaClass)
 
     @RequestMapping("/v1/create")
     fun create(
@@ -21,8 +23,10 @@ class CrudController(private val storage: Storage) {
         ) entry: String
     ): ModelAndView {
         val isCreated = storage.create(storageName, entry)
+        val status = if (isCreated) "successfully" else "not"
+        logger.debug("Record {} was {} added to the storage {}", entry, status, storageName)
 
-        return ModelAndView("result", mapOf("status" to isCreated))
+        return read(storageName)
     }
 
     @RequestMapping("/v1/update")
@@ -40,9 +44,9 @@ class CrudController(private val storage: Storage) {
             required = true
         ) newValue: String
     ): ModelAndView {
-        val isUpdated = storage.update(storageName, oldValue, newValue)
+        storage.update(storageName, oldValue, newValue)
 
-        return ModelAndView("result", mapOf("status" to isUpdated))
+        return read(storageName)
     }
 
     @RequestMapping("/v1/read")
@@ -54,8 +58,11 @@ class CrudController(private val storage: Storage) {
     ): ModelAndView {
         val entries = storage.read(storageName)
 
-        return ModelAndView("read", mapOf("entries" to entries))
+        val wrappedEntries = entries.map { Entry(it) }
+        return ModelAndView("listView", mapOf("entries" to wrappedEntries, "storageName" to storageName))
     }
+
+    private data class Entry(val entry: String)
 
     @RequestMapping("/v1/delete")
     fun delete(
@@ -69,7 +76,9 @@ class CrudController(private val storage: Storage) {
         ) entry: String
     ): ModelAndView {
         val isDeleted = storage.delete(storageName, entry)
+        val status = if (isDeleted) "successfully" else "not"
+        logger.debug("Record {} was {} deleted from {}", entry, status, storageName)
 
-        return ModelAndView("result", mapOf("status" to isDeleted))
+        return read(storageName)
     }
 }

@@ -1,0 +1,14 @@
+{{> header}}
+
+<table class="center">
+    {{#entries}}
+        <tr>
+            <td class="list">{{entry}}</td>
+            <td>
+                <a href='/v1/delete?storageName={{storageName}}&entry={{entry}}'><span>X</span></a>
+            </td>
+        </tr>
+    {{/entries}}
+</table>
+
+{{> footer}}
