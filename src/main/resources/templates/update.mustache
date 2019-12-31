@@ -1,5 +1,18 @@
 {{> header}}
 
-<p>Update
+<form action="/v1/update" class="center">
+    <label for="storageName">
+        Store name:<input type="text" name="storageName" id="storageName"><br>
+    </label>
+    <label for="oldValue">
+        Old value:<input type="text" name="oldValue" id="oldValue"><br>
+    </label>
+    <label for="newValue">
+        New value:<input type="text" name="newValue" id="newValue"><br>
+    </label>
+    <label for="submit">
+        <input type="submit" name="submit" value="Update" id="submit"><br>
+    </label>
+</form>
 
 {{> footer}}
